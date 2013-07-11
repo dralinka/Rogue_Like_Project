@@ -14,8 +14,7 @@ namespace Rogue_Like_Project
     //den Spieler dorthin bewegt.
     public class Spieler
     {
-        public int PlayerX = 0;
-        public int PlayerY = 0;
+        public Vector2 Position = new Vector2();
         public string Player = "P";
 
 
@@ -27,7 +26,7 @@ namespace Rogue_Like_Project
 
         public void SetPlayer()
         {
-            Program.SetStrng(PlayerX, PlayerY, Player);
+            Program.SetStrng(Position.X, Position.Y, Player);
         }
 
         public bool PlayerMove()
@@ -35,32 +34,33 @@ namespace Rogue_Like_Project
             switch (Program.KeyCode)
             {
                 case "a":
-                if (Program.Sarray[PlayerX - 1, PlayerY] == " ")
+                if (Program.Sarray[Position.X - 1, Position.Y] == " ")
                 {
-                    PlayerX -= 1;
+                    Position.X -= 1;
                 }
                 return true;
 
                 case "w":
-                if (Program.Sarray[PlayerX, PlayerY - 1] == " ")
+                if (Program.Sarray[Position.X, Position.Y - 1] == " ")
                 {
-                    PlayerY -= 1;
+                    Position.Y -= 1;
                 }
                 return true;
 
                 case "d":
-                if (Program.Sarray[PlayerX + 1, PlayerY] == " ")
+                if (Program.Sarray[Position.X + 1, Position.Y] == " ")
                 {
-                    PlayerX += 1;
+                    Position.X += 1;
                 }
                 return true;
 
                 case "s":
-                if (Program.Sarray[PlayerX, PlayerY + 1] == " ")
+                if (Program.Sarray[Position.X, Position.Y + 1] == " ")
                 {
-                    PlayerY += 1;
+                    Position.Y += 1;
                 }
                 return true;
+           
 
                 default:
                 return false;     

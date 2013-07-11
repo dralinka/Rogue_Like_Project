@@ -27,7 +27,7 @@ namespace Rogue_Like_Project
         {
             DoorCheck(Program.BlaKey.KeyFound);
             SetDoor();
-            CheckPlayerDoor(Program.BlaPlayer.PlayerX, Program.BlaPlayer.PlayerY);
+            CheckPlayerDoor(Program.BlaPlayer.Position.X, Program.BlaPlayer.Position.Y);
 
         }
 

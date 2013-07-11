@@ -38,8 +38,8 @@ namespace Rogue_Like_Project
             BlaKey.KeyY = 25;
 
             //SpielerTest
-            BlaPlayer.PlayerX = 30;
-            BlaPlayer.PlayerY = 30;
+            BlaPlayer.Position.X = 30;
+            BlaPlayer.Position.Y = 30;
 
 
             FrameRoutine();
@@ -54,9 +54,9 @@ namespace Rogue_Like_Project
             VertiWall(8, 40, 36, "#");
             HoriWall(4, 40, 8, "#");
             HoriWall(4, 40, 36, "#");
-            Blatür.DoorRoutine(BlaKey.KeyFound, BlaPlayer.PlayerX, BlaPlayer.PlayerY);
+            Blatür.DoorRoutine(BlaKey.KeyFound, BlaPlayer.Position.X, BlaPlayer.Position.Y);
             BlaPlayer.PlayerRoutine();
-            BlaKey.KeyRoutine(BlaPlayer.PlayerX, BlaPlayer.PlayerY);
+            BlaKey.KeyRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
             PrintIt();
             DelStrng();
         }

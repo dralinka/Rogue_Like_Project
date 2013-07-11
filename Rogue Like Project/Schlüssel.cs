@@ -22,6 +22,7 @@ namespace Rogue_Like_Project
         public string Key = "K";
         public Boolean KeyFound = false;
 
+
         public void KeyRoutine(int PlayerX, int PlayerY)
         {
             CheckPlayerKey(PlayerX,PlayerY);
