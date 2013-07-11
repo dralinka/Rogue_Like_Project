@@ -18,8 +18,7 @@ namespace Rogue_Like_Project
 
     public class Tür
     {
-        public int DoorX = 1;
-        public int DoorY = 1;
+        public Vector2 Position = new Vector2();
         public string Door = "D";
         public Boolean DoorOpen = false;
 
@@ -34,7 +33,7 @@ namespace Rogue_Like_Project
         //Setzt den TürString ins Array
         public void SetDoor()
         {
-            Program.SetStrng(DoorX, DoorY, Door);
+            Program.SetStrng(Position.X, Position.Y, Door);
         }
 
         //Öffnet die Tür wenn der Schlüssel gefunden worden ist
@@ -49,10 +48,10 @@ namespace Rogue_Like_Project
         {
             if(DoorOpen)
             {
-                if (Program.MoveOnMe(DoorX, DoorY, PlayerX, PlayerY))
+                if (Program.MoveOnMe(Position.X, Position.Y, PlayerX, PlayerY))
                 {
-                    DoorX = 0;
-                    DoorY = 0;
+                    Position.X = 0;
+                    Position.Y = 0;
                 }
             }
         }

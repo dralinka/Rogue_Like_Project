@@ -17,8 +17,8 @@ namespace Rogue_Like_Project
 
     public class Schlüssel
     {
-        public int KeyX;
-        public int KeyY;
+    
+        public Vector2 Position = new Vector2 ();
         public string Key = "K";
         public Boolean KeyFound = false;
 
@@ -31,7 +31,7 @@ namespace Rogue_Like_Project
 
         public void SetKey()
         {
-            Program.SetStrng(KeyX, KeyY, Key);
+            Program.SetStrng(Position.X, Position.Y, Key);
         }
 
         //Überpfüft ob der Spielerim Umliegenden Feld ist und füht MoveOnMe und Schlüssel ggf. aufnimmt
@@ -39,12 +39,12 @@ namespace Rogue_Like_Project
         {
             if (KeyFound == false)
             {
-                Program.MoveOnMe(KeyX, KeyX, PlayerX, PlayerY);
-                if (PlayerX == KeyX && PlayerY == KeyY)
+                Program.MoveOnMe(Position.X, Position.Y, PlayerX, PlayerY);
+                if (PlayerX == Position.X && PlayerY == Position.Y)
                 {
                     KeyFound = true;
-                    KeyX = 0;
-                    KeyY = 0;
+                    Position.X = 0;
+                    Position.Y = 0;
                 }
             }
         }

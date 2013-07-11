@@ -30,12 +30,12 @@ namespace Rogue_Like_Project
             HoriWall(4, 40, 36, "#");
 
             //TürTest
-            Blatür.DoorX = 25;
-            Blatür.DoorY = 36;
+            Blatür.Position.X = 25;
+            Blatür.Position.Y = 36;
 
             //SchlüsselTest
-            BlaKey.KeyX = 25;
-            BlaKey.KeyY = 25;
+            BlaKey.Position.X = 25;
+            BlaKey.Position.Y = 25;
 
             //SpielerTest
             BlaPlayer.Position.X = 30;
