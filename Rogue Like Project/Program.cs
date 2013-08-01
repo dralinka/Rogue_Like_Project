@@ -71,23 +71,48 @@ namespace Rogue_Like_Project
             Bla6Kisten.Position.X = 25;
             Bla6Kisten.Position.Y = 24;
 
-
+            SetRoutine();
             FrameRoutine();
+            SetRoutine();
+
             KeyPress();
          
             
         }
-
-
-        public static void FrameRoutine()
+        public static void SetRoutine()
         {
             //Spieler muss in der Routine als letztes abgerufen werden
+
             VertiWall(8, 40, 4, "#");
             VertiWall(8, 40, 36, "#");
             HoriWall(4, 40, 8, "#");
             HoriWall(4, 40, 36, "#");
+
+            BlaKey.SetKey();
+
+            BlaKisten.SetBox();
+            Bla2Kisten.SetBox();
+            Bla3Kisten.SetBox();
+            Bla4Kisten.SetBox();
+            Bla5Kisten.SetBox();
+            Bla6Kisten.SetBox();
+
+            Blatür.SetDoor();
+
+            BlaPlayer.SetPlayer();
+
+        }
+
+        public static void FrameRoutine()
+        {
+            
             
             FinishLevel();
+
+            BlaKey.SetKey();
+            
+            BlaKey.KeyRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
+
             BlaKisten.BoxRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
             Bla2Kisten.BoxRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
             Bla3Kisten.BoxRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
@@ -95,13 +120,14 @@ namespace Rogue_Like_Project
             Bla5Kisten.BoxRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
             Bla6Kisten.BoxRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
 
+
             LevelEnded = Blatür.DoorRoutine(BlaKey.KeyFound, BlaPlayer.Position.X, BlaPlayer.Position.Y);
 
             BlaPlayer.PlayerRoutine();
-            
 
             BlaKey.KeyRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
-            
+
+
 
             PrintIt();
             DelStrng();

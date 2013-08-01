@@ -26,8 +26,9 @@ namespace Rogue_Like_Project
         public void KeyRoutine(int PlayerX, int PlayerY)
         {
             CheckPlayerKey(PlayerX,PlayerY);
-            SetKey();
+         
         }
+
 
         public void SetKey()
         {
