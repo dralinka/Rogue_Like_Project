@@ -22,11 +22,11 @@ namespace Rogue_Like_Project
         public string Door = "D";
         public Boolean DoorOpen = false;
 
-        public void DoorRoutine(Boolean CheckKey,int PlayerX, int PlayerY)
+        public bool DoorRoutine(Boolean CheckKey,int PlayerX, int PlayerY)
         {
             DoorCheck(Program.BlaKey.KeyFound);
             SetDoor();
-            CheckPlayerDoor(Program.BlaPlayer.Position.X, Program.BlaPlayer.Position.Y);
+            return CheckPlayerDoor(Program.BlaPlayer.Position.X, Program.BlaPlayer.Position.Y);
 
         }
 
@@ -44,67 +44,22 @@ namespace Rogue_Like_Project
 
 
         //Überpfüft ob der Spieler den Schlüssel besitzt und im Umliegenden Feld ist und füht MoveOnMe aus
-        public void CheckPlayerDoor(int PlayerX, int PlayerY)
+        public bool CheckPlayerDoor(int PlayerX, int PlayerY)
         {
-            if(DoorOpen)
+            if (DoorOpen)
             {
                 if (Program.MoveOnMe(Position.X, Position.Y, PlayerX, PlayerY))
                 {
                     Position.X = 0;
                     Position.Y = 0;
-                }
-            }
-        }
-
-    }
-}
-
-
-
-    /*
-        public string Door = "D";
-        Boolean DoorOpen = false;
-    
-        public int x
-        {
-            get;
-            set;
-        }
-
-        public int y
-        {
-            get;
-            set;
-        }
-
-        public void SetDoorPosition(int x, int y)
-        {
-            this.x = x;
-            this.y = y;
-        }
-
-        public void GetDoorPosition(out int x, out int y)
-        {
-            x = this.x;
-            y = this.y;
-        }
-
-        public Boolean DoorCheck(int x, int y)
-        {
-            if ((x + 1 == this.x || x - 1 == this.x) && (y == this.y))
-            {
-                if ((y + 1 == this.y || x - 1 == this.y) && (x == this.x))
-                {
-
-                    DoorOpen = true;
-                    Door = " ";
                     return true;
-                   
                 }
+                else return false;
             }
-                return false;
-        
+            else return false;
         }
+
     }
 }
-    */
+
+

@@ -13,12 +13,18 @@ namespace Rogue_Like_Project
         static public string Z = " ";
         static public string KeyCode = " ";
         static public ConsoleKey KeyInput;
+        static public bool LevelEnded = false;
 
 
         public static Schlüssel BlaKey = new Schlüssel();
         public static Spieler BlaPlayer = new Spieler();
         public static Tür Blatür = new Tür();
-
+        public static Kisten BlaKisten = new Kisten();
+        public static Kisten Bla2Kisten = new Kisten();
+        public static Kisten Bla3Kisten = new Kisten();
+        public static Kisten Bla4Kisten = new Kisten();
+        public static Kisten Bla5Kisten = new Kisten();
+        public static Kisten Bla6Kisten = new Kisten();
 
         static void Main(string[] args)
         {
@@ -40,23 +46,63 @@ namespace Rogue_Like_Project
             //SpielerTest
             BlaPlayer.Position.X = 30;
             BlaPlayer.Position.Y = 30;
+        
+            //Kisten test
+            BlaKisten.Position.X = 24;
+            BlaKisten.Position.Y = 25;
+
+            //Kisten test
+            Bla2Kisten.Position.X = 24;
+            Bla2Kisten.Position.Y = 26;
+
+            //Kisten test
+            Bla3Kisten.Position.X = 25;
+            Bla3Kisten.Position.Y = 26;
+
+            //Kisten test
+            Bla4Kisten.Position.X = 26;
+            Bla4Kisten.Position.Y = 26;
+
+            //Kisten test
+            Bla5Kisten.Position.X = 26;
+            Bla5Kisten.Position.Y = 25;
+
+            //Kisten test
+            Bla6Kisten.Position.X = 25;
+            Bla6Kisten.Position.Y = 24;
 
 
             FrameRoutine();
             KeyPress();
+         
             
         }
 
 
         public static void FrameRoutine()
         {
+            //Spieler muss in der Routine als letztes abgerufen werden
             VertiWall(8, 40, 4, "#");
             VertiWall(8, 40, 36, "#");
             HoriWall(4, 40, 8, "#");
             HoriWall(4, 40, 36, "#");
-            Blatür.DoorRoutine(BlaKey.KeyFound, BlaPlayer.Position.X, BlaPlayer.Position.Y);
+            
+            FinishLevel();
+            BlaKisten.BoxRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
+            Bla2Kisten.BoxRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
+            Bla3Kisten.BoxRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
+            Bla4Kisten.BoxRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
+            Bla5Kisten.BoxRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
+            Bla6Kisten.BoxRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
+
+            LevelEnded = Blatür.DoorRoutine(BlaKey.KeyFound, BlaPlayer.Position.X, BlaPlayer.Position.Y);
+
             BlaPlayer.PlayerRoutine();
+            
+
             BlaKey.KeyRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
+            
+
             PrintIt();
             DelStrng();
         }
@@ -135,7 +181,7 @@ namespace Rogue_Like_Project
                 for (int i4 = 0; i4 <= 35; i4++)
                 {
                     Y++;
-                    if(Sarray[X, Y] == "P"||Sarray[X, Y] == "K"||Sarray[X, Y] == "D")
+                    if (Sarray[X, Y] == "P" || Sarray[X, Y] == "K" || Sarray[X, Y] == "D" || Sarray[X, Y] == "O")
                     {
                     Sarray[X, Y] = " ";
                     }
@@ -207,6 +253,59 @@ namespace Rogue_Like_Project
               
         }
 
+        public static void FinishLevel()
+        {
+            if (LevelEnded)
+            {
+                DelStrng();
+
+                //WändeTest
+                VertiWall(8, 40, 4, "#");
+                VertiWall(8, 40, 36, "#");
+                HoriWall(4, 40, 8, "#");
+                HoriWall(4, 40, 36, "#");
+
+                //TürTest
+                Blatür.Position.X = 25;
+                Blatür.Position.Y = 36;
+
+                //SchlüsselTest
+                BlaKey.Position.X = 25;
+                BlaKey.Position.Y = 25;
+
+                //SpielerTest
+                BlaPlayer.Position.X = 30;
+                BlaPlayer.Position.Y = 30;
+
+                //Kisten test
+                BlaKisten.Position.X = 24;
+                BlaKisten.Position.Y = 25;
+
+                //Kisten test
+                Bla2Kisten.Position.X = 24;
+                Bla2Kisten.Position.Y = 26;
+
+                //Kisten test
+                Bla3Kisten.Position.X = 25;
+                Bla3Kisten.Position.Y = 26;
+
+                //Kisten test
+                Bla4Kisten.Position.X = 26;
+                Bla4Kisten.Position.Y = 26;
+
+                //Kisten test
+                Bla5Kisten.Position.X = 26;
+                Bla5Kisten.Position.Y = 25;
+
+                //Kisten test
+                Bla6Kisten.Position.X = 25;
+                Bla6Kisten.Position.Y = 24;
+
+                BlaKey.KeyFound = false;
+
+                LevelEnded = false;
+            }
+        }
 
     }
 }

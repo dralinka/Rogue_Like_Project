@@ -34,7 +34,7 @@ namespace Rogue_Like_Project
             switch (Program.KeyCode)
             {
                 case "a":
-                if (Program.Sarray[Position.X - 1, Position.Y] == " ")
+                    if (Program.Sarray[Position.X - 1, Position.Y] == " ")
                 {
                     Position.X -= 1;
                 }
