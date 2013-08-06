@@ -113,6 +113,15 @@ namespace Rogue_Like_Project
             
             BlaKey.KeyRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
 
+            BlaKisten.SetBox();
+            Bla2Kisten.SetBox();
+            Bla3Kisten.SetBox();
+            Bla4Kisten.SetBox();
+            Bla5Kisten.SetBox();
+            Bla6Kisten.SetBox();
+
+            //Kisten müssen vorher dargestellt werden
+
             BlaKisten.BoxRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
             Bla2Kisten.BoxRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
             Bla3Kisten.BoxRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);

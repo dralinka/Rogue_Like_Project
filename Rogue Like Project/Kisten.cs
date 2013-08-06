@@ -32,32 +32,32 @@ namespace Rogue_Like_Project
         //Setzt den Spieler auf das Feld des Objektes wenn er sich draufbewegen möchte
         public bool MoveKiste(int PlayerX, int PlayerY)
         {
-            if (PlayerX + 1 == Position.X && PlayerY == Position.Y && Program.KeyCode == "d" && Program.Sarray[Position.X + 1, Position.Y] == " ")
+            if (PlayerX - 1 == Position.X && PlayerY == Position.Y && Program.KeyCode == "a" && Program.Sarray[Position.X - 1, Position.Y] == " ")
             {
                 Program.Sarray[Position.X, Position.Y] = " ";
                 //Sarray[Objx+1, ObjY] = "O";
-                Position.X = Position.X + 1;
-                return true;
-            }
-            else if (PlayerX - 1 == Position.X && PlayerY == Position.Y && Program.KeyCode == "a" && Program.Sarray[Position.X - 1, Position.Y] == " ")
-            {
-                Program.Sarray[Position.X, Position.Y] = " ";
-                //Sarray[Objx-1, ObjY] = "O";
                 Position.X = Position.X - 1;
                 return true;
             }
-            else if (PlayerY + 1 == Position.Y && PlayerX == Position.X && Program.KeyCode == "s" && Program.Sarray[Position.X, Position.Y+1] == " ")
+            else if (PlayerX + 1 == Position.X && PlayerY == Position.Y && Program.KeyCode == "d" && Program.Sarray[Position.X + 1, Position.Y] == " ")
             {
                 Program.Sarray[Position.X, Position.Y] = " ";
-                //Sarray[Objx, ObjY+1] = "O";
-                Position.Y = Position.Y + 1;
+                //Sarray[Objx-1, ObjY] = "O";
+                Position.X = Position.X + 1;
                 return true;
             }
             else if (PlayerY - 1 == Position.Y && PlayerX == Position.X && Program.KeyCode == "w" && Program.Sarray[Position.X, Position.Y-1] == " ")
             {
                 Program.Sarray[Position.X, Position.Y] = " ";
-                //Sarray[Objx, ObjY-1] = "O";
+                //Sarray[Objx, ObjY+1] = "O";
                 Position.Y = Position.Y - 1;
+                return true;
+            }
+            else if (PlayerY + 1 == Position.Y && PlayerX == Position.X && Program.KeyCode == "s" && Program.Sarray[Position.X, Position.Y+1] == " ")
+            {
+                Program.Sarray[Position.X, Position.Y] = " ";
+                //Sarray[Objx, ObjY-1] = "O";
+                Position.Y = Position.Y + 1;
                 return true;
             }
             else
