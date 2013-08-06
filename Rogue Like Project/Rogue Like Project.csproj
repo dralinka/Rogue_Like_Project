@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Hauptmenu.cs" />
     <Compile Include="Kisten.cs" />
+    <Compile Include="Notes.cs" />
     <Compile Include="Spieler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
