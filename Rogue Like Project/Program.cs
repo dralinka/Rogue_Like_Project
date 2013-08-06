@@ -29,6 +29,9 @@ namespace Rogue_Like_Project
         static void Main(string[] args)
         {
 
+
+            ConsoleAttributes();
+
             //WändeTest
             VertiWall(8, 40, 4, "#");
             VertiWall(8, 40, 36, "#");
@@ -79,6 +82,20 @@ namespace Rogue_Like_Project
          
             
         }
+
+
+        private static void ConsoleAttributes()
+        {
+            Console.SetBufferSize(240, 80);
+
+            Console.WindowHeight = Console.LargestWindowHeight;
+
+
+            Console.WindowWidth = Console.LargestWindowWidth;
+
+        }
+
+
         public static void SetRoutine()
         {
             //Spieler muss in der Routine als letztes abgerufen werden
