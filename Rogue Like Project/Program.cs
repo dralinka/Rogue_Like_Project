@@ -23,19 +23,6 @@ namespace Rogue_Like_Project
         static void Main(string[] args)
         {
 
-
-            //Farben
-            Console.BackgroundColor = ConsoleColor.DarkGreen;
-            Console.ForegroundColor = ConsoleColor.White;
-
-
-            //Zeichentabelle
-            //Console.OutputEncoding = System.Text.Encoding.GetEncoding(1252);
-            
-  
-
-
-
             //WändeTest
             VertiWall(8, 40, 4, "#");
             VertiWall(8, 40, 36, "#");
