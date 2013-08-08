@@ -9,7 +9,7 @@ namespace Rogue_Like_Project
     {
         static public int X = 0;
         static public int Y = 0;
-        static public string[,] Sarray = new string[51,51];
+        static public string[,] Sarray = new string[80,240];
         static public string Z = " ";
         static public string KeyCode = " ";
         static public ConsoleKey KeyInput;
@@ -43,10 +43,10 @@ namespace Rogue_Like_Project
 
 
             //WändeTest
-            VertiWall(8, 40, 4, "#");
-            VertiWall(8, 40, 36, "#");
-            HoriWall(4, 40, 8, "#");
-            HoriWall(4, 40, 36, "#");
+            VertiWall(8, 70, 4, "#");
+            VertiWall(8, 70, 36, "#");
+            HoriWall(4, 70, 8, "#");
+            HoriWall(4, 70, 36, "#");
 
             //TürTest
             Blatür.Position.X = 25;
@@ -104,10 +104,10 @@ namespace Rogue_Like_Project
         {
             //Spieler muss in der Routine als letztes abgerufen werden
 
-            VertiWall(8, 40, 4, "#");
-            VertiWall(8, 40, 36, "#");
-            HoriWall(4, 40, 8, "#");
-            HoriWall(4, 40, 36, "#");
+            VertiWall(8, 70, 4, "#");
+            VertiWall(8, 70, 36, "#");
+            HoriWall(4, 70, 8, "#");
+            HoriWall(4, 70, 36, "#");
 
             BlaKey.SetKey();
 
@@ -201,12 +201,12 @@ namespace Rogue_Like_Project
         public static void PrintIt()
         {
         Console.Clear();
-            for (int i = 0; i <=35; i++)
+            for (int i = 0; i <=240; i++)
             {
             Y++;
             X = 0;
             Console.WriteLine();
-                for (int i2 = 0; i2<=35; i2++)
+                for (int i2 = 0; i2<=80; i2++)
                 {
                 X++;
                     if (Sarray[X, Y] == null)
