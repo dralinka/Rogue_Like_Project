@@ -19,13 +19,15 @@ namespace Rogue_Like_Project
     {
     
         public Vector2 Position = new Vector2 ();
-        public string Key = "K";
+        public string Key = ((char)3).ToString();
         public Boolean KeyFound = false;
 
 
-        public void KeyRoutine(int PlayerX, int PlayerY)
+        public void KeyRoutine()
         {
-            CheckPlayerKey(PlayerX,PlayerY);
+            CheckPlayerKey();
+            SetKey();
+            PrintKey();
          
         }
 
@@ -35,13 +37,18 @@ namespace Rogue_Like_Project
             Program.SetStrng(Position.X, Position.Y, Key);
         }
 
+        public void PrintKey()
+        {
+            Program.SetStringToPosi(Position.X, Position.Y, Key);
+        }
+
         //Überpfüft ob der Spielerim Umliegenden Feld ist und füht MoveOnMe und Schlüssel ggf. aufnimmt
-        public void CheckPlayerKey(int PlayerX, int PlayerY)
+        public void CheckPlayerKey()
         {
             if (KeyFound == false)
             {
-                Program.MoveOnMe(Position.X, Position.Y, PlayerX, PlayerY);
-                if (PlayerX == Position.X && PlayerY == Position.Y)
+                Program.MoveOnMe(Position.X, Position.Y, Spieler.Position.X, Spieler.Position.Y);
+                if (Spieler.Position.X == Position.X && Spieler.Position.Y == Position.Y)
                 {
                     KeyFound = true;
                     Position.X = 0;
@@ -54,29 +61,3 @@ namespace Rogue_Like_Project
 }
 
 
-
-
-/*
-        int KeyX;
-        int KeyY;
-        string Key = "K";
-        Boolean KeyFound = false;
-
-        public void SetKeyPosition(int X, int Y)
-        {
-            KeyX = X;
-            KeyY = Y;
-        }
-
-        //Setzt den SchlüsselString ins Array
-        public void SetKey()
-        {
-            Program.SetStrng(KeyX, KeyY, Key);
-            if (KeyFound)
-            {
-                KeyFound = true;
-            }
-        }
-    }
-}
- */

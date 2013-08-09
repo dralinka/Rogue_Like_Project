@@ -12,52 +12,70 @@ namespace Rogue_Like_Project
     //Eine Funktion die an der angegeben Position den SpielerString setzt
     //Eine Funktion die, die Eingabe überprüft (WASD) und dementsprechenden überprüft ob das Feld frei ist
     //den Spieler dorthin bewegt.
-    public class Spieler
+    public static class Spieler
     {
-        public Vector2 Position = new Vector2();
-        public string Player = "P";
+        public static Vector2 Position = new Vector2();
+        public static string Player = ((char)1).ToString();
 
 
-        public void PlayerRoutine()
+        public static void PlayerRoutine()
         {
             PlayerMove();
             SetPlayer();
+            PrintPlayer();
         }
 
-        public void SetPlayer()
+        public static void SetPlayer()
         {
             Program.SetStrng(Position.X, Position.Y, Player);
         }
 
-        public bool PlayerMove()
+        public static void PrintPlayer()
+        {
+            Program.SetStringToPosi(Position.X, Position.Y, Player);
+        }
+
+        public static bool PlayerMove()
         {
             switch (Program.KeyCode)
             {
                 case "a":
-                    if (Program.Sarray[Position.X - 1, Position.Y] == " ")
+                    if (Program.Sarray[Position.X - 1, Position.Y] == " " || Program.Sarray[Position.X - 1, Position.Y] == "")
                 {
+                    Program.SetStrng(Position.X, Position.Y, " ");
+                    Program.SetStringToPosi(Position.X, Position.Y, " ");
                     Position.X -= 1;
+                    PrintPlayer();
                 }
                 return true;
 
                 case "w":
-                if (Program.Sarray[Position.X, Position.Y - 1] == " ")
+                if (Program.Sarray[Position.X, Position.Y - 1] == " " || Program.Sarray[Position.X - 1, Position.Y] == "")
                 {
+                    Program.SetStrng(Position.X, Position.Y, " ");
+                    Program.SetStringToPosi(Position.X, Position.Y, " ");
                     Position.Y -= 1;
+                    PrintPlayer();
                 }
                 return true;
 
                 case "d":
-                if (Program.Sarray[Position.X + 1, Position.Y] == " ")
+                if (Program.Sarray[Position.X + 1, Position.Y] == " " || Program.Sarray[Position.X - 1, Position.Y] == "")
                 {
+                    Program.SetStrng(Position.X, Position.Y, " ");
+                    Program.SetStringToPosi(Position.X, Position.Y, " ");
                     Position.X += 1;
+                    PrintPlayer();
                 }
                 return true;
 
                 case "s":
-                if (Program.Sarray[Position.X, Position.Y + 1] == " ")
+                if (Program.Sarray[Position.X, Position.Y + 1] == " " || Program.Sarray[Position.X - 1, Position.Y] == "")
                 {
+                    Program.SetStrng(Position.X, Position.Y, " ");
+                    Program.SetStringToPosi(Position.X, Position.Y, " ");
                     Position.Y += 1;
+                    PrintPlayer();
                 }
                 return true;
            

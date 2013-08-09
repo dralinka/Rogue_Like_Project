@@ -58,28 +58,39 @@ namespace Rogue_Like_Project
     {
             switch (Program.KeyCode)
             {
-
                 case "w":
-                if (Program.Sarray[Position.X, Position.Y - 1] == " ")
+                //if (Program.Sarray[Position.X, Position.Y - 1] == " ")
                 {
                     if (Position.Y == 15)
-                        Position.Y = 23;
+                    {
+                        Program.SetStrng(Position.X, Position.Y, "");
+                        Position.Y = 27;
+                    }
                     else
+                        Program.SetStrng(Position.X, Position.Y, "");
                         Position.Y -= 4;
-   
-                }
+                   }
                 break;
 
                 case "s":
-                if (Program.Sarray[Position.X, Position.Y + 1] == " ")
+                //if (Program.Sarray[Position.X, Position.Y + 1] == " ")
                 {
                     if (Position.Y == 23)
-                        Position.Y = 15;
+                    {
+                        Program.SetStrng(Position.X, Position.Y, "");
+                        Position.Y = 11;
+                    }
                     else
+                        Program.SetStrng(Position.X, Position.Y, "");
                         Position.Y += 4; 
                 }
                 break;
-                  
+
+                case "!":
+                if (Position.Y == 15)
+                    Program.LevelEnded = true;
+                break; 
+
                 default:
                 break; 
             }

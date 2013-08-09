@@ -19,14 +19,15 @@ namespace Rogue_Like_Project
     public class Tür
     {
         public Vector2 Position = new Vector2();
-        public string Door = "D";
+        public string Door = "T";
         public Boolean DoorOpen = false;
 
-        public bool DoorRoutine(Boolean CheckKey,int PlayerX, int PlayerY)
+        public bool DoorRoutine(Boolean CheckKey,bool Keyfound)
         {
-            DoorCheck(Program.BlaKey.KeyFound);
+            DoorCheck(Keyfound);
             SetDoor();
-            return CheckPlayerDoor(Program.BlaPlayer.Position.X, Program.BlaPlayer.Position.Y);
+            PrintDoor();
+            return CheckPlayerDoor();
 
         }
 
@@ -34,6 +35,11 @@ namespace Rogue_Like_Project
         public void SetDoor()
         {
             Program.SetStrng(Position.X, Position.Y, Door);
+        }
+
+        public void PrintDoor()
+        {
+            Program.SetStringToPosi(Position.X, Position.Y, Door);
         }
 
         //Öffnet die Tür wenn der Schlüssel gefunden worden ist
@@ -44,11 +50,11 @@ namespace Rogue_Like_Project
 
 
         //Überpfüft ob der Spieler den Schlüssel besitzt und im Umliegenden Feld ist und füht MoveOnMe aus
-        public bool CheckPlayerDoor(int PlayerX, int PlayerY)
+        public bool CheckPlayerDoor()
         {
             if (DoorOpen)
             {
-                if (Program.MoveOnMe(Position.X, Position.Y, PlayerX, PlayerY))
+                if (Program.MoveOnMe(Position.X, Position.Y, Spieler.Position.X, Spieler.Position.Y))
                 {
                     Position.X = 0;
                     Position.Y = 0;

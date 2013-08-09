@@ -46,6 +46,7 @@
     <Compile Include="Hauptmenu.cs" />
     <Compile Include="Kisten.cs" />
     <Compile Include="level.cs" />
+    <Compile Include="LevelManager.cs" />
     <Compile Include="Notes.cs" />
     <Compile Include="Spieler.cs" />
     <Compile Include="Program.cs" />

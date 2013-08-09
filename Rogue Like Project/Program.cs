@@ -9,158 +9,43 @@ namespace Rogue_Like_Project
     {
         static public int X = 0;
         static public int Y = 0;
-        static public string[,] Sarray = new string[80,240];
+        static public string[,] Sarray = new string[999,999];
         static public string Z = " ";
         static public string KeyCode = " ";
         static public ConsoleKey KeyInput;
         static public bool LevelEnded = false;
+        public static int Stage = 0;
 
+        public static int PrintX = 70;
+        public static int PrintY = 230;
 
-        public static Schlüssel BlaKey = new Schlüssel();
-        public static Spieler BlaPlayer = new Spieler();
-        public static Tür Blatür = new Tür();
-        public static Kisten BlaKisten = new Kisten();
-        public static Kisten Bla2Kisten = new Kisten();
-        public static Kisten Bla3Kisten = new Kisten();
-        public static Kisten Bla4Kisten = new Kisten();
-        public static Kisten Bla5Kisten = new Kisten();
-        public static Kisten Bla6Kisten = new Kisten();
 
         static void Main(string[] args)
         {
-
-
-            //Farben
-            Console.BackgroundColor = ConsoleColor.DarkGreen;
-            Console.ForegroundColor = ConsoleColor.White;
             ConsoleAttributes();
 
-            //Zeichentabelle
-            //Console.OutputEncoding = System.Text.Encoding.GetEncoding(1252);
-            
-  
-
-
-
-            //WändeTest
-            VertiWall(8, 70, 4, "#");
-            VertiWall(8, 70, 36, "#");
-            HoriWall(4, 70, 8, "#");
-            HoriWall(4, 70, 36, "#");
-
-            //TürTest
-            Blatür.Position.X = 25;
-            Blatür.Position.Y = 36;
-
-            //SchlüsselTest
-            BlaKey.Position.X = 25;
-            BlaKey.Position.Y = 25;
-
-            //SpielerTest
-            BlaPlayer.Position.X = 30;
-            BlaPlayer.Position.Y = 30;
-        
-            //Kisten test
-            BlaKisten.Position.X = 24;
-            BlaKisten.Position.Y = 25;
-
-            //Kisten test
-            Bla2Kisten.Position.X = 24;
-            Bla2Kisten.Position.Y = 26;
-
-            //Kisten test
-            Bla3Kisten.Position.X = 25;
-            Bla3Kisten.Position.Y = 26;
-
-            //Kisten test
-            Bla4Kisten.Position.X = 26;
-            Bla4Kisten.Position.Y = 26;
-
-            //Kisten test
-            Bla5Kisten.Position.X = 26;
-            Bla5Kisten.Position.Y = 25;
-
-            //Kisten test
-            Bla6Kisten.Position.X = 25;
-            Bla6Kisten.Position.Y = 24;
-
-            SetRoutine();
-            FrameRoutine();
-            SetRoutine();
-
-            KeyPress();
-         
-            
+            LevelManager.LoadLevel(Stage);
+            KeyPress();   
         }
 
         private static void ConsoleAttributes()
         {
+            Console.CursorVisible = false;
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.ForegroundColor = ConsoleColor.White;
             Console.SetBufferSize(240, 80);
             Console.WindowHeight = Console.LargestWindowHeight;
             Console.WindowWidth = Console.LargestWindowWidth;
         }
 
-        public static void SetRoutine()
-        {
-            //Spieler muss in der Routine als letztes abgerufen werden
-
-            VertiWall(8, 70, 4, "#");
-            VertiWall(8, 70, 36, "#");
-            HoriWall(4, 70, 8, "#");
-            HoriWall(4, 70, 36, "#");
-
-            BlaKey.SetKey();
-
-            BlaKisten.SetBox();
-            Bla2Kisten.SetBox();
-            Bla3Kisten.SetBox();
-            Bla4Kisten.SetBox();
-            Bla5Kisten.SetBox();
-            Bla6Kisten.SetBox();
-
-            Blatür.SetDoor();
-
-            BlaPlayer.SetPlayer();
-
-        }
+        
 
         public static void FrameRoutine()
         {
-            
-            
-            FinishLevel();
-
-            BlaKey.SetKey();
-            
-            BlaKey.KeyRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
-
-            BlaKisten.SetBox();
-            Bla2Kisten.SetBox();
-            Bla3Kisten.SetBox();
-            Bla4Kisten.SetBox();
-            Bla5Kisten.SetBox();
-            Bla6Kisten.SetBox();
-
-            //Kisten müssen vorher dargestellt werden
-
-            BlaKisten.BoxRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
-            Bla2Kisten.BoxRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
-            Bla3Kisten.BoxRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
-            Bla4Kisten.BoxRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
-            Bla5Kisten.BoxRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
-            Bla6Kisten.BoxRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
-
-
-            LevelEnded = Blatür.DoorRoutine(BlaKey.KeyFound, BlaPlayer.Position.X, BlaPlayer.Position.Y);
-
-            BlaPlayer.PlayerRoutine();
-
-            BlaKey.KeyRoutine(BlaPlayer.Position.X, BlaPlayer.Position.Y);
-
-
-
-            PrintIt();
-            DelStrng();
+            LevelManager.LevelRoutine(Stage);
+            System.Diagnostics.Debug.WriteLine(KeyCode);
+            //PrintIt();
+            FinishLevel(); 
         }
 
         public static void KeyPress()
@@ -188,6 +73,11 @@ namespace Rogue_Like_Project
                             KeyCode = "d";
                             FrameRoutine();
                             break;
+
+                        case ConsoleKey.Enter:
+                            KeyCode = "!";
+                            FrameRoutine();
+                            break;
                         default:
                             KeyCode = " ";
                             break;
@@ -197,16 +87,24 @@ namespace Rogue_Like_Project
         }
 
 
+        //Einzelne Zeichen Ändern
+        public static void SetStringToPosi(int X, int Y, string Z)
+        { 
+        Console.SetCursorPosition(X,Y);
+        Console.Write(Z);
+        }
+
+
         //BildAusgabe
         public static void PrintIt()
         {
         Console.Clear();
-            for (int i = 0; i <=240; i++)
+        for (int i = 0; i <= PrintX; i++)
             {
             Y++;
             X = 0;
             Console.WriteLine();
-                for (int i2 = 0; i2<=80; i2++)
+            for (int i2 = 0; i2 <= PrintY; i2++)
                 {
                 X++;
                     if (Sarray[X, Y] == null)
@@ -230,14 +128,14 @@ namespace Rogue_Like_Project
         //Löscht alle Zeichen aus dem Array
         public static void DelStrng()
         {
-            for (int i3 = 0; i3 <= 35; i3++)
+            for (int i3 = 0; i3 <= PrintX; i3++)
             {
             X++;
             Y = 0;
-                for (int i4 = 0; i4 <= 35; i4++)
+            for (int i4 = 0; i4 <= PrintY; i4++)
                 {
                     Y++;
-                    if (Sarray[X, Y] == "P" || Sarray[X, Y] == "K" || Sarray[X, Y] == "D" || Sarray[X, Y] == "O")
+                    //if (Sarray[X, Y] ==  ((char)31).ToString()|| Sarray[X, Y] ==  ((char)1).ToString() || Sarray[X, Y] ==  ((char)8).ToString() || Sarray[X, Y] ==  ((char)3).ToString())
                     {
                     Sarray[X, Y] = " ";
                     }
@@ -306,59 +204,18 @@ namespace Rogue_Like_Project
             {
                 return false;
             }
-              
+            
         }
 
         public static void FinishLevel()
         {
             if (LevelEnded)
             {
+
                 DelStrng();
-
-                //WändeTest
-                VertiWall(8, 40, 4, "#");
-                VertiWall(8, 40, 36, "#");
-                HoriWall(4, 40, 8, "#");
-                HoriWall(4, 40, 36, "#");
-
-                //TürTest
-                Blatür.Position.X = 25;
-                Blatür.Position.Y = 36;
-
-                //SchlüsselTest
-                BlaKey.Position.X = 25;
-                BlaKey.Position.Y = 25;
-
-                //SpielerTest
-                BlaPlayer.Position.X = 30;
-                BlaPlayer.Position.Y = 30;
-
-                //Kisten test
-                BlaKisten.Position.X = 24;
-                BlaKisten.Position.Y = 25;
-
-                //Kisten test
-                Bla2Kisten.Position.X = 24;
-                Bla2Kisten.Position.Y = 26;
-
-                //Kisten test
-                Bla3Kisten.Position.X = 25;
-                Bla3Kisten.Position.Y = 26;
-
-                //Kisten test
-                Bla4Kisten.Position.X = 26;
-                Bla4Kisten.Position.Y = 26;
-
-                //Kisten test
-                Bla5Kisten.Position.X = 26;
-                Bla5Kisten.Position.Y = 25;
-
-                //Kisten test
-                Bla6Kisten.Position.X = 25;
-                Bla6Kisten.Position.Y = 24;
-
-                BlaKey.KeyFound = false;
-
+                PrintIt();
+                Stage++;
+                LevelManager.FinishLevelLoadNew(Stage);
                 LevelEnded = false;
             }
         }

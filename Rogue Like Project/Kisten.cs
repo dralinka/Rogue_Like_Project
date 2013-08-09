@@ -10,7 +10,7 @@ namespace Rogue_Like_Project
 
 
         public Vector2 Position = new Vector2();
-        public string Box = "O";
+        public string Box = "B";
         public Boolean BoxMove = false;
 
 
@@ -19,11 +19,17 @@ namespace Rogue_Like_Project
             
             MoveKiste(PlayerX, PlayerY);
             SetBox();
+            PrintBox();
         }
 
         public void SetBox()
         {
             Program.SetStrng(Position.X, Position.Y, Box);
+        }
+
+        public void PrintBox()
+        {
+            Program.SetStringToPosi(Position.X, Position.Y, Box);
         }
 
 
