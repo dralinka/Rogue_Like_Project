@@ -59,9 +59,9 @@ namespace Rogue_Like_Project
                 Tür1.Position.Y = 5;
                 Key1.Position.X = 20;
                 Key1.Position.Y = 20;
-                Spieler.Position.X = 2;
-                Spieler.Position.X = 2;
-                Program.VertiWall(6, 10, 3, "f");
+                Spieler.Position.X = 4;
+                Spieler.Position.X = 4;
+                Program.VertiWall(6, 10, 3, "W");
                 Program.PrintIt();
             }
 
@@ -80,17 +80,18 @@ namespace Rogue_Like_Project
             {
                 Hauptmenu.CursorRoutine();
                 Hauptmenu.SetCursor();
-                Program.PrintIt();
+                //Program.PrintIt();
 
             }
 
             if (stagelvl == 1)
             {
-                Spieler.PlayerRoutine();
-                Tür1.DoorRoutine(Key1.KeyFound, Key1.KeyFound);
-                Key1.KeyRoutine();
                 Kiste1.BoxRoutine(Spieler.Position.X, Spieler.Position.Y);
-
+                Tür1.DoorRoutine(Key1.KeyFound, Key1.KeyFound);
+                Key1.CheckPlayerKey();
+                Spieler.PlayerRoutine();
+                Key1.KeyRoutine();
+               
             }
         }
 

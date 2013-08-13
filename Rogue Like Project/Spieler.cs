@@ -14,7 +14,7 @@ namespace Rogue_Like_Project
     //den Spieler dorthin bewegt.
     public static class Spieler
     {
-        public static Vector2 Position = new Vector2();
+        public static Vector2 Position = new Vector2(4,3);
         public static string Player = ((char)1).ToString();
 
 
@@ -40,41 +40,45 @@ namespace Rogue_Like_Project
             switch (Program.KeyCode)
             {
                 case "a":
-                    if (Program.Sarray[Position.X - 1, Position.Y] == " " || Program.Sarray[Position.X - 1, Position.Y] == "")
+                    if (Program.Sarray[Position.X - 1, Position.Y] == " ")//| || Program.Sarray[Position.X - 1, Position.Y] == "")
                 {
                     Program.SetStrng(Position.X, Position.Y, " ");
                     Program.SetStringToPosi(Position.X, Position.Y, " ");
                     Position.X -= 1;
+                    SetPlayer();
                     PrintPlayer();
                 }
                 return true;
 
                 case "w":
-                if (Program.Sarray[Position.X, Position.Y - 1] == " " || Program.Sarray[Position.X - 1, Position.Y] == "")
+                if (Program.Sarray[Position.X, Position.Y - 1] == " " )//|| Program.Sarray[Position.X - 1, Position.Y] == "")
                 {
                     Program.SetStrng(Position.X, Position.Y, " ");
                     Program.SetStringToPosi(Position.X, Position.Y, " ");
                     Position.Y -= 1;
+                    SetPlayer();
                     PrintPlayer();
                 }
                 return true;
 
                 case "d":
-                if (Program.Sarray[Position.X + 1, Position.Y] == " " || Program.Sarray[Position.X - 1, Position.Y] == "")
+                if (Program.Sarray[Position.X + 1, Position.Y] == " ")//||| Program.Sarray[Position.X - 1, Position.Y] == "")
                 {
                     Program.SetStrng(Position.X, Position.Y, " ");
                     Program.SetStringToPosi(Position.X, Position.Y, " ");
                     Position.X += 1;
+                    SetPlayer();
                     PrintPlayer();
                 }
                 return true;
 
                 case "s":
-                if (Program.Sarray[Position.X, Position.Y + 1] == " " || Program.Sarray[Position.X - 1, Position.Y] == "")
+                if (Program.Sarray[Position.X, Position.Y + 1] == " ")//||| Program.Sarray[Position.X - 1, Position.Y] == "")
                 {
                     Program.SetStrng(Position.X, Position.Y, " ");
                     Program.SetStringToPosi(Position.X, Position.Y, " ");
                     Position.Y += 1;
+                    SetPlayer();
                     PrintPlayer();
                 }
                 return true;

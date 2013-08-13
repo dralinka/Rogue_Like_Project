@@ -14,10 +14,10 @@ namespace Rogue_Like_Project
         static public string KeyCode = " ";
         static public ConsoleKey KeyInput;
         static public bool LevelEnded = false;
-        public static int Stage = 0;
+        public static int Stage = 1;
 
-        public static int PrintX = 70;
-        public static int PrintY = 230;
+        public static int PrintX = 39;
+        public static int PrintY = 139;
 
 
         static void Main(string[] args)
@@ -33,7 +33,7 @@ namespace Rogue_Like_Project
             Console.CursorVisible = false;
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.SetBufferSize(240, 80);
+            Console.SetBufferSize(140, 40);
             Console.WindowHeight = Console.LargestWindowHeight;
             Console.WindowWidth = Console.LargestWindowWidth;
         }
@@ -43,8 +43,7 @@ namespace Rogue_Like_Project
         public static void FrameRoutine()
         {
             LevelManager.LevelRoutine(Stage);
-            System.Diagnostics.Debug.WriteLine(KeyCode);
-            //PrintIt();
+            //System.Diagnostics.Debug.WriteLine(KeyCode);
             FinishLevel(); 
         }
 
@@ -180,22 +179,22 @@ namespace Rogue_Like_Project
         //Setzt den Spieler auf das Feld des Objektes wenn er sich draufbewegen möchte
         public static bool MoveOnMe(int ObjX, int ObjY,int PlayerX,int PlayerY)
         {
+            if (PlayerX - 1 == ObjX && PlayerY == ObjY && KeyCode == "a")
+            {
+                Sarray[ObjX, ObjY] = " ";
+                return true;
+            }
             if (PlayerX + 1 == ObjX && PlayerY == ObjY && KeyCode == "d")
             {
                 Sarray[ObjX, ObjY] = " ";
                 return true;
             }
-            else if (PlayerX - 1 == ObjX && PlayerY == ObjY && KeyCode == "a")
+            if (PlayerY - 1 == ObjY && PlayerX == ObjX && KeyCode == "w")
             {
                 Sarray[ObjX, ObjY] = " ";
                 return true;
             }
-            else if (PlayerY + 1 == ObjY && PlayerX == ObjX && KeyCode == "s")
-            {
-                Sarray[ObjX, ObjY] = " ";
-                return true;
-            }
-            else if (PlayerY - 1 == ObjY && PlayerX == ObjX && KeyCode == "w")
+            if (PlayerY + 1 == ObjY && PlayerX == ObjX && KeyCode == "s")
             {
                 Sarray[ObjX, ObjY] = " ";
                 return true;

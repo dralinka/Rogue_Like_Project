@@ -25,10 +25,10 @@ namespace Rogue_Like_Project
 
         public void KeyRoutine()
         {
-            CheckPlayerKey();
+            
             SetKey();
             PrintKey();
-         
+            Spieler.PrintPlayer();
         }
 
 

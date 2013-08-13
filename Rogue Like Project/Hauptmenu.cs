@@ -63,12 +63,16 @@ namespace Rogue_Like_Project
                 {
                     if (Position.Y == 15)
                     {
+                        Program.SetStringToPosi(Position.X,Position.Y,"   ");
                         Program.SetStrng(Position.X, Position.Y, "");
                         Position.Y = 27;
+                        Program.SetStringToPosi(Position.X, Position.Y, Cursor);
                     }
                     else
+                        Program.SetStringToPosi(Position.X,Position.Y,"   ");
                         Program.SetStrng(Position.X, Position.Y, "");
                         Position.Y -= 4;
+                        Program.SetStringToPosi(Position.X, Position.Y, Cursor);
                    }
                 break;
 
@@ -77,12 +81,16 @@ namespace Rogue_Like_Project
                 {
                     if (Position.Y == 23)
                     {
+                        Program.SetStringToPosi(Position.X,Position.Y,"   ");
                         Program.SetStrng(Position.X, Position.Y, "");
                         Position.Y = 11;
+                        Program.SetStringToPosi(Position.X, Position.Y, Cursor);
                     }
                     else
+                        Program.SetStringToPosi(Position.X,Position.Y,"   ");
                         Program.SetStrng(Position.X, Position.Y, "");
                         Position.Y += 4; 
+                        Program.SetStringToPosi(Position.X,Position.Y,Cursor);
                 }
                 break;
 
